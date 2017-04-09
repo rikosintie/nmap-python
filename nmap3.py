@@ -13,7 +13,7 @@ print('''
 3 Troubleshooting DHCP with the NMAP Broadcast-DHCP-Discover script
 4 Troubleshooting DHCP with the NMAP DHCP-Discover script
 5 Troubleshooting IPv6 DHCP with a broadcast discover
-6 Brute Forcing SNMP with NMAP - Requires a text file of guesses in c:\tftp-root\snmp-string.txt 
+6 Brute Forcing Telnet with NMAP - Requires a text file of usernames and a text file of passwords. 
 7 BACNET - scripts from https://github.com/digitalbond/Redpoint#enip-enumeratense
 8 DNS Broadcast Discover
 9 Banner Grab using banner-plus from HD Moore
