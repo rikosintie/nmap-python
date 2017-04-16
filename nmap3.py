@@ -39,7 +39,8 @@ if nmapTest == 0:
 # 0 Download Cisco Configs
     IPAddress=input('Enter the IP Address ')
     SNMP=input('Enter SNMP Private Community String ')
-    print('nmap -sU -p 161 --script snmp-ios-config --script-args snmpcommunity=',SNMP,IPAddress)
+    SNMPcommunity='--script-args snmpcommunity='+SNMP
+    print('nmap -sU -p 161 --script snmp-ios-config ',SNMPcommunity,IPAddress)
 
 elif nmapTest == 1:
 # 1 Checking Server Cipher Suites
