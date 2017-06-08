@@ -14,10 +14,10 @@ python3 nmap3.py
 0. Download Cisco Configs using SNMP
 1. Checking Server Cipher Suites using ports 443, 465, 993 and 995
 2. Display SSH fingerprint (Host Keys) 
-3. Troubleshooting DHCP with the NMAP Broadcast-DHCP-Discover script
-4. Troubleshooting DHCP with the NMAP DHCP-Discover script
+3. Performs routing information gathering through Cisco's (EIGRP) Protocol
+4. Display DHCP with the NMAP DHCP-Discover scripts
 5. Troubleshooting IPv6 DHCP with a broadcast discover
-6. Brute Forcing SNMP with NMAP - Requires a text file of guesses in c:	ftp-root\snmp-string.txt 
+6. Brute Forcing Telnet with NMAP - Requires files of users and guesses 
 7. BACNET - scripts from https://github.com/digitalbond/Redpoint#enip-enumeratense
 8. DNS Broadcast Discover
 9. Banner Grab using banner-plus from HD Moore
@@ -26,8 +26,8 @@ python3 nmap3.py
 12. DNS Brute - Uses nselib/data/dns-srv-names for list of SRV records to try, nselib/data/vhosts-full.lst for hosts
 13. SMB - Various scripts for SMB servers
 14. SNMP on Windows
-15. Basic Script Scan the -vv option includes more detail
-16. SQL nmap --script smb-os-discovery.nse -p445 192.168.10.221
+15. Scan for MS17-010 Wannacry vulnerability
+16. MSSQL - Attempt to determine version, config info and check for blank password
 17. Check for SSH V1
 
 ```
