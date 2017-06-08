@@ -40,7 +40,3 @@ nmap -sU -p 161 --script snmp-ios-config --script-args snmpcommunity= private 19
 Once you select a number you will be asked for an IP address or SNMP string if the script requires it
 The script will output the appropriate nmap command. Copy it and paste into a command line or shell
 
-To Do
-
-- Add error checking for invalid IP addresses
-- Add switch for Linux vs Windows output
