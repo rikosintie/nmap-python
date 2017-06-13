@@ -22,6 +22,12 @@ Add ssl-cert
 add SMB scripts
 nmap --script=smb-<script>.nse --script-args=smbuser=ron,smbpass=iagotest2k3,smbbasic=1,smbsign=force <host>
 
+Notes:
+you should run nmap --script-updatedb if you add any of the non-default scripts listed here.
+you can use --script-help to any script to print out its help file I.E. nmap --script-help smb-vuln-cve-2017-7494
+you can use --script-trace to output the packets sent and received 
+I.E nmap --script ssl-cert,ssl-enum-ciphers --script-trace -p 443,465,993,995 192.168.10.239
+ 
 Script Usage
 If you create a file "ip.txt" in the folder where you run the script it will load the IP address as a default and use
 it where an ip address is needed. The file should have one line - the ip address or ip address range to use.
@@ -60,15 +66,21 @@ def readip():
         for line in f:
             IP.append(line)
         f.close
-        ipsaved = IP[0]
-        ipsaved = ipsaved.strip('\n')
-        if not ipsaved:
-            IPAddress = input('Enter the IP Address: ')
-        else:
-            IPAddress = input('Enter the IP Address [%s]: ' %(ipsaved))
-        if not IPAddress:
-            IPAddress = ipsaved
-        return IPAddress
+    except: # FileNotFoundError:
+        IPAddress = input('Enter the IP Address: ')
+        return IPAddress  
+
+    try:
+	    ipsaved = IP[0]
+	    ipsaved = ipsaved.strip('\n')
+	    if not ipsaved:
+	        IPAddress = input('Enter the IP Address: ')
+	    else:
+	        IPAddress = input('Enter the IP Address [%s]: ' %(ipsaved))
+	    if not IPAddress:
+	        IPAddress = ipsaved
+
+	    return IPAddress  
     except:
         print('\n[!] An Unknown Error Occured or CTRL+C was pressed')
 
@@ -84,8 +96,9 @@ print('''
      -----------------
 4 - Display DHCP with the NMAP DHCP-Discover scripts -- https://nmap.org/nsedoc/scripts/dhcp-discover.html 
     https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html
+    Display IPv6 DHCP with a broadcast discover -- https://nmap.org/nsedoc/scripts/broadcast-dhcp6-discover.html
      -----------------
-5 - Display IPv6 DHCP with a broadcast discover -- https://nmap.org/nsedoc/scripts/broadcast-dhcp6-discover.html
+5 - Nmap script to find vulnerable Samba devices such as a printer, NAS or any device that allows Windows clients to connect.
      -----------------
 6 - Brute Forcing Telnet with NMAP - Requires files of users and guesses -- https://nmap.org/nsedoc/scripts/telnet-brute.html
      -----------------
@@ -104,6 +117,7 @@ print('''
 13 - SMB - Various scripts for SMB servers. Most require SMBv1 (XP, Server 2003) --
      -----------------
 14 - SNMP - Is SNMP running on a Windows machine -- https://nmap.org/nsedoc/scripts/snmp-processes.html
+            Grab HP printer password
      -----------------
 15 - Scan for MS17-010 Wannacry vulnerability -- https://nmap.org/nsedoc/scripts/smb-vuln-ms17-010.html
      -----------------
@@ -190,7 +204,9 @@ elif nmapTest == 5:
 #    IPAddress=input('Enter the v6 IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('nmap -6 --script broadcast-dhcp6-discover',IPAddress)
+    print('Download script from https://svn.nmap.org/nmap/scripts/smb-vuln-cve-2017-7494.nse')
+    print('nmap --script smb-vuln-cve-2017-7494 -p 445',IPAddress)
+    print('nmap --script smb-vuln-cve-2017-7494 --script-args smb-vuln-cve-2017-7494.check-version -p445',IPAddress)
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
@@ -340,6 +356,9 @@ elif nmapTest == 14:
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s nmap -sU -p 161 --script=snmp-processes %s' %(sudo, IPAddress))
+    print('Grab HP Printer Password')
+    print('snmpget -v 1 -c public %s .1.3.6.1.4.1.11.2.3.9.1.1.13.0 ' %(IPAddress))
+    print('snmpget -v 1 -c internal %s .1.3.6.1.4.1.11.2.3.9.1.1.13.0 ' %(IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
