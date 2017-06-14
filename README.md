@@ -1,5 +1,5 @@
 # nmap-python
-A Python wrapper for my most used nmap scripts. It's not a substitute for nmap knowledge but it makes running commons scripts fast and easy as you don't have to type script names. It's easy to edit the code and change the scipts if you want to use different nmap scripts.
+A Python wrapper for my most used nmap scripts. It's not a substitute for nmap knowledge but it makes running common scripts fast and easy as you don't have to type script names. It's easy to edit the code and change the scipts if you want to use different nmap scripts.
 
 written in Python 3.4.4, it prints the Python version as the first line. 
 
@@ -13,7 +13,7 @@ python3 nmap3.py
 ```
 You will be prompted to enter y if you are on Linux. If you answer y it will add sudo to the commands that need root.
 
-To save a default IP address or range create a file called ip.txt in the same folder as the script. In the file add just the IP Address or IP Address range in Nmap format. When you run the script it will list the IP address in the prompt. Just hit enter to accept the default or type a new IP address and hit enter.
+To save a default IP address or range, create a file called ip.txt in the same folder as the script. In the file add just the IP Address or IP Address range in Nmap format. When you run the script it will list the IP address in the prompt. Just hit enter to accept the default or type a new IP address and hit enter.
 
 0. Download Cisco Configs using SNMP - https://nmap.org/nsedoc/scripts/snmp-ios-config.html
 
