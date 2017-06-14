@@ -11,12 +11,16 @@ On Linux
 ```
 python3 nmap3.py
 ```
+You will be prompted to enter y is you are on Linux. If you answer y it will add sudo to the commmand that need root.
+
+To save a default IP address or range create a file called ip.txt in the same folder as the script. In the file add just the IP Address or IP Address range in Nmap format. When you run the script it will list the IP address in the file. Just hit enter to accept or type a new IP address and hit enter.
+
 0. Download Cisco Configs using SNMP
 1. Checking Server Cipher Suites using ports 443, 465, 993 and 995
 2. Display SSH fingerprint (Host Keys) 
 3. Performs routing information gathering through Cisco's (EIGRP) Protocol
 4. Display DHCP with the NMAP DHCP-Discover scripts
-5. Troubleshooting IPv6 DHCP with a broadcast discover
+5. Nmap script to find vulnerable Samba devices such as a printer, NAS or any device that allows Windows clients to connect.
 6. Brute Forcing Telnet with NMAP - Requires files of users and guesses 
 7. BACNET - scripts from https://github.com/digitalbond/Redpoint#enip-enumeratense
 8. DNS Broadcast Discover
