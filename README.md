@@ -74,7 +74,7 @@ sudo  nmap -sU -p 161 --script snmp-ios-config --script-args creds.snmp=private 
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 ```
-# Notes:
+## Notes:
 
 You should run `nmap --script-updatedb` if you add any of the non-default scripts listed here.
 
