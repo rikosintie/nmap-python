@@ -11,7 +11,7 @@ On Linux
 ```
 python3 nmap3.py
 ```
-You will be prompted to enter y is you are on Linux. If you answer y it will add sudo to the commmand that need root.
+You will be prompted to enter y is you are on Linux. If you answer y it will add sudo to the commands that need root.
 
 To save a default IP address or range create a file called ip.txt in the same folder as the script. In the file add just the IP Address or IP Address range in Nmap format. When you run the script it will list the IP address in the file. Just hit enter to accept or type a new IP address and hit enter.
 
@@ -34,13 +34,13 @@ To save a default IP address or range create a file called ip.txt in the same fo
 16. MSSQL - Attempt to determine version, config info and check for blank password
 17. Check for SSH V1
 
+Once you select a number you will be asked for an IP address or SNMP string if the script requires it
+The script will output the appropriate nmap command. Copy it and paste into a command line or shell.
+
 ```
 Input a number to select 0
 Enter the IP Address 192.168.10.250
 Enter SNMP Private Community String private
 nmap -sU -p 161 --script snmp-ios-config --script-args snmpcommunity= private 192.168.10.250
 ```
-
-Once you select a number you will be asked for an IP address or SNMP string if the script requires it
-The script will output the appropriate nmap command. Copy it and paste into a command line or shell
 
