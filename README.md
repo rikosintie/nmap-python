@@ -11,9 +11,11 @@ On Linux
 ```
 python3 nmap3.py
 ```
-You will be prompted to enter y if you are on Linux. If you answer y it will add sudo to the commands that need root.
+When the script starts you will be prompted to enter y if you are on Linux. If you answer y it will add sudo to the commands that need root.
 
 To save a default IP address or range, create a file called ip.txt in the same folder as the script. In the file add just the IP Address or IP Address range in Nmap format. When you run the script it will list the IP address in the prompt. Just hit enter to accept the default or type a new IP address and hit enter.
+
+You will then be presented with the following choices:
 
 0. Download Cisco Configs using SNMP - https://nmap.org/nsedoc/scripts/snmp-ios-config.html
 
@@ -56,9 +58,11 @@ To save a default IP address or range, create a file called ip.txt in the same f
 
 17. Check for SSH V1 - https://nmap.org/nsedoc/scripts/sshv1.html
 
-Once you select a number you will be asked for an IP address or SNMP string if the script requires it
+Once you select a number you will be asked for an IP address or SNMP string if the script requires it.
 The script will output the appropriate nmap command. Copy it and paste into a command line or shell.
 
+Here is an example using choice 0. In this case the ip.txt file conatins 10.56.245.133 but I overrode 
+it with 192.168.10.0/24.
 ```
 Are you running Linux [y/n] y
 Input a number to select a script 0
