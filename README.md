@@ -59,9 +59,14 @@ Once you select a number you will be asked for an IP address or SNMP string if t
 The script will output the appropriate nmap command. Copy it and paste into a command line or shell.
 
 ```
-Input a number to select 0
-Enter the IP Address 192.168.10.250
+Are you running Linux [y/n] y
+Input a number to select a script 0
+Enter the IP Address [10.56.246.133]: 192.168.10.0/24
 Enter SNMP Private Community String private
-nmap -sU -p 161 --script snmp-ios-config --script-args snmpcommunity= private 192.168.10.250
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+sudo  nmap -sU -p 161 --script snmp-ios-config --script-args creds.snmp=private 192.168.10.0/24
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 ```
 
