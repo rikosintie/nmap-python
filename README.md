@@ -1,7 +1,7 @@
 # nmap-python
-A Python wrapper for my most used nmap scripts. It's not a substitute for nmap knowledge but it makes running common scripts fast and easy as you don't have to type script names. It's easy to edit the code and change the scipts if you want to use different nmap scripts.
+A Python wrapper for my most used nmap scripts. It's not a substitute for nmap knowledge but it makes running common scripts fast and easy as you don't have to remember script names. It's easy to edit the code in the case select statements and change the scipts if you want to use different nmap scripts.
 
-written in Python 3.4.4, it prints the Python version as the first line. 
+Written in Python 3.4.4, it prints the Python version as the first line. 
 
 To execute on windows if the [python launcher](https://www.python.org/dev/peps/pep-0397/) is installed 
 ```
