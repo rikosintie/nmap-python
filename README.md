@@ -3,9 +3,9 @@ A Python wrapper for my most used nmap scripts. It's not a substitute for nmap k
 
 written in Python 3.4.4, it prints the Python version as the first line. 
 
-To execute on windows
+To execute on windows if the [python launcher](https://www.python.org/dev/peps/pep-0397/) is installed 
 ```
-python nmap3.py 
+python -3 nmap3.py 
 ```
 On Linux
 ```
