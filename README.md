@@ -25,6 +25,7 @@ To save a default IP address or range, create a file called ip.txt in the same f
 
 4. Display DHCP with the NMAP DHCP-Discover scripts - https://nmap.org/nsedoc/scripts/dhcp-discover.html 
    https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html
+   
    Display IPv6 DHCP with a broadcast discover - https://nmap.org/nsedoc/scripts/broadcast-dhcp6-discover.html
 
 5. Nmap script to find vulnerable Samba devices such as a printer, NAS or any device that allows Windows clients to connect.
