@@ -20,6 +20,7 @@ Add sslv2
 Add ssl-known-key
 Add ssl-cert
 add SMB scripts
+Example smb arguments
 nmap --script=smb-<script>.nse --script-args=smbuser=ron,smbpass=iagotest2k3,smbbasic=1,smbsign=force <host>
 
 Notes:
@@ -114,7 +115,7 @@ print('''
      -----------------
 12 - DNS Brute - Enumerate DNS hostnames by brute force guessing of common subdomains -- https://nmap.org/nsedoc/scripts/dns-brute.html
      -----------------
-13 - SMB - Various scripts for SMB servers. Most require SMBv1 (XP, Server 2003) --
+13 - SMB - Various scripts for SMB servers. Make sure you are running nmap 7.50+ as there are a lot of fixes in 7.50.
      -----------------
 14 - SNMP - Is SNMP running on a Windows machine -- https://nmap.org/nsedoc/scripts/snmp-processes.html
             Grab HP printer password
@@ -340,7 +341,7 @@ elif nmapTest == 13:
     print('nmap -p445 --script=smb-brute --script-args=userdb=usernames.txt,passdb=hashes.txt',IPAddress)
     print('nmap -p445 --script=smb-pwdump --script-args=smbuser=administrator,smbhash=dVd0brx1,rcrack=rcrack,rtable=*.rt',IPAddress)
     print('nmap -p445 --script=smb-enum-shares,smb-ls',IPAddress)
-    print('nmap -p445-- script=smb-ls --script-args share=c$,path=\\temp',IPAddress)
+    print('nmap -p445 --script=smb-ls --script-args share=c$,path=\\temp',IPAddress)
     print('nmap -p445 --script=smb-mbenum',IPAddress)
     print('nmap -p445 --script=smb-security-mode.nse %s' %(IPAddress))
     print('%s nmap -p U:137,T:139 -sU -sS --script=smb-security-mode.nse %s' %(sudo, IPAddress))
@@ -368,7 +369,7 @@ elif nmapTest == 15:
 #    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('%s nmap -p445 --script smb-vuln-ms17-010.nse %s' %(sudo, IPAddress))
+    print('%s nmap -Pn -p445 --open --max-hostgroup 3 --script smb-vuln-ms17-010 %s' %(sudo, IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
