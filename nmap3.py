@@ -371,6 +371,9 @@ elif nmapTest == 15:
     print()
     print('%s nmap -Pn -p445 --open --max-hostgroup 3 --script smb-vuln-ms17-010 %s' %(sudo, IPAddress))
     print()
+    print('Include -d for debugging output. This will show more detail about the scan')
+    print('%s nmap -d -Pn -p445 --open --max-hostgroup 3 --script smb-vuln-ms17-010 %s' %(sudo, IPAddress))
+    print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
 elif nmapTest == 16:
