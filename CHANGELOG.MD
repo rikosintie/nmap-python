@@ -7,6 +7,7 @@ Added port 3389 to script 1 SSL ciphers. This checks Microsoft servers for RDP. 
 
 Input a number to select a script 1
 Enter the IP Address [192.168.97.136]: 192.168.10.221
+
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389 192.168.10.221
