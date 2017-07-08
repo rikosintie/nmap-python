@@ -7,7 +7,7 @@ Added port 3389 to script 1 SSL ciphers. This checks the ciphers offered by the 
 
 The best I could find for server 2008R2/Win7SP1 was to enable FIPS level security per this MS document [Tip: Secure RDS (Remote Desktop Services) Connections with SSL](https://technet.microsoft.com/en-us/library/ff458357.aspx?f=255&MSPPError=-2147217396)
 
-Pretty lame though, it still uses 3DES and SHA1. If anyone knows how to setup RDP for modern ciphers please let me know.
+Pretty lame though, as you lose the ECDHE and AES suites and get 3DES and SHA1! If anyone knows how to setup RDP for only modern ciphers please let me know.
 
 **_Example before enabling FIPS_**
 
