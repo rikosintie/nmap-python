@@ -11,7 +11,7 @@ nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389 192.168.10.221
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 mhubbard@1S1K-SYS76:~/Dropbox/Python/Scripts$ nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,**3389** 192.168.10.221
-
+```
 Starting Nmap 7.50 ( https://nmap.org ) at 2017-07-08 10:28 PDT
 Nmap scan report for win-l6hbt78g89g.pu.pri (192.168.10.221)
 Host is up (0.0052s latency).
@@ -56,3 +56,4 @@ PORT     STATE  SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 5.74 seconds
 ------------------------------------------------------------------------------------
+```
