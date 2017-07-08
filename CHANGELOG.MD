@@ -10,10 +10,10 @@ Enter the IP Address [192.168.97.136]: 192.168.10.221
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
-nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389 192.168.10.221
+nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,**3389** 192.168.10.221
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-mhubbard@1S1K-SYS76:~/Dropbox/Python/Scripts$ nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,**3389** 192.168.10.221
+mhubbard@1S1K-SYS76:~/Dropbox/Python/Scripts$ nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389 192.168.10.221
 ```
 Starting Nmap 7.50 ( https://nmap.org ) at 2017-07-08 10:28 PDT
 Nmap scan report for win-l6hbt78g89g.pu.pri (192.168.10.221)
