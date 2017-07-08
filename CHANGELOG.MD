@@ -3,7 +3,7 @@ nmap3.python changelog
 ------------------------------------------------------------------------------------
 2017-07-08 (YYYY-MM-DD) - CHANGED
 
-Added port 3389 to script 1 SSL ciphers. This checks Microsoft servers for RDP. I have found that a fully patched 2008 R2 server offers up RC4 by default.
+Added port 3389 to script 1 SSL ciphers. This checks the ciphers offered by the Microsoft RDP service. I have found that a fully patched 2008 R2 server offers up RC4 by default.
 
 Input a number to select a script 1
 Enter the IP Address [192.168.97.136]: 192.168.10.221
