@@ -9,7 +9,7 @@ The best I could find for server 2008R2/Win7SP1 was to enable FIPS level securit
 
 Pretty lame though, it still uses 3DES and SHA1. If anyone knows how to setup RDP for modern ciphers please let me know.
 
-*Example before enabling FIPS*
+**_Example before enabling FIPS_**
 
 Input a number to select a script 1
 
