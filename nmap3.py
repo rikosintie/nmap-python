@@ -164,7 +164,7 @@ elif nmapTest == 1:
 #    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995',IPAddress)
+    print('nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389',IPAddress)
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
