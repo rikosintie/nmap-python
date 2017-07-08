@@ -67,7 +67,7 @@ PORT     STATE  SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 5.74 seconds
 ```
 
-*Example after enabling FIPS*
+**_Example after enabling FIPS_**
 
 ```
 mhubbard@1S1K-SYS76:~/Dropbox/Python/Scripts$ nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389 192.168.97.135
