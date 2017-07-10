@@ -4,6 +4,7 @@ nmap3.python changelog
 
 1. Added option -1 to display some nmap options
 2. Changed `Enter the IP Address:` to `Enter the IP Address or Domain Name:` on the prompt.
+3. Added ssl-cert-intaddr and ssl-known-key scripts to option 1
 
 ------------------------------------------------------------------------------------
 2017-07-08 (YYYY-MM-DD) - CHANGED
