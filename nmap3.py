@@ -68,16 +68,16 @@ def readip():
             IP.append(line)
         f.close
     except: # FileNotFoundError:
-        IPAddress = input('Enter the IP Address: ')
+        IPAddress = input('Enter the IP Address or domain name: ')
         return IPAddress  
 
     try:
 	    ipsaved = IP[0]
 	    ipsaved = ipsaved.strip('\n')
 	    if not ipsaved:
-	        IPAddress = input('Enter the IP Address: ')
+	        IPAddress = input('Enter the IP Address or domain name: ')
 	    else:
-	        IPAddress = input('Enter the IP Address [%s]: ' %(ipsaved))
+	        IPAddress = input('Enter the IP Address or domain name [%s]: ' %(ipsaved))
 	    if not IPAddress:
 	        IPAddress = ipsaved
 
@@ -87,44 +87,50 @@ def readip():
 
 
 print('''
-0 - Download Cisco Configs using SNMP -- https://nmap.org/nsedoc/scripts/snmp-ios-config.html
+-1 - Print out script options -- https://nmap.org/book/nse-usage.html, https://nmap.org/book/output-formats-commandline-flags.html
+
+ 0 - Download Cisco Configs using SNMP -- https://nmap.org/nsedoc/scripts/snmp-ios-config.html 
      -----------------
-1 - Check Cipher Suites using ports 443, 465, 993 and 995 -- https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html
+ 1 - Check Cipher Suites and Certificates using ports 443, 465, 993, 995 and 3389
+    https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html
+    https://nmap.org/nsedoc/scripts/ssl-cert.html
+    https://nmap.org/nsedoc/scripts/ssl-cert-intaddr.html
+    https://nmap.org/nsedoc/scripts/ssl-known-key.html
      -----------------
-2 - Display SSH fingerprint (Host Keys) on an SSh server -- https://nmap.org/nsedoc/scripts/ssh-hostkey.html
+ 2 - Display SSH fingerprint (Host Keys) on an SSh server -- https://nmap.org/nsedoc/scripts/ssh-hostkey.html
      -----------------
-3 - Performs routing information gathering through Cisco's (EIGRP) Protocol -- https://nmap.org/nsedoc/scripts/broadcast-eigrp-discovery.html
+ 3 - Performs routing information gathering through Cisco's (EIGRP) Protocol -- https://nmap.org/nsedoc/scripts/broadcast-eigrp-discovery.html
      -----------------
-4 - Display DHCP with the NMAP DHCP-Discover scripts -- https://nmap.org/nsedoc/scripts/dhcp-discover.html 
+ 4 - Display DHCP with the NMAP DHCP-Discover scripts -- https://nmap.org/nsedoc/scripts/dhcp-discover.html 
     https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html
     Display IPv6 DHCP with a broadcast discover -- https://nmap.org/nsedoc/scripts/broadcast-dhcp6-discover.html
      -----------------
-5 - Nmap script to find vulnerable Samba devices such as a printer, NAS or any device that allows Windows clients to connect.
+ 5 - Nmap script to find vulnerable Samba devices such as a printer, NAS or any device that allows Windows clients to connect.
      -----------------
-6 - Brute Forcing Telnet with NMAP - Requires files of users and guesses -- https://nmap.org/nsedoc/scripts/telnet-brute.html
+ 6 - Brute Forcing Telnet with NMAP - Requires files of users and guesses -- https://nmap.org/nsedoc/scripts/telnet-brute.html
      -----------------
-7 - EMS - Environmental Monitoring Systems using scripts from https://github.com/digitalbond/Redpoint#enip-enumeratense
+ 7 - EMS - Environmental Monitoring Systems using scripts from https://github.com/digitalbond/Redpoint#enip-enumeratense
      -----------------
-8 - DNS Broadcast Discover -- broadcast-dns-service-discovery
+ 8 - DNS Broadcast Discover -- broadcast-dns-service-discovery
      -----------------
-9 - Banner Grab using banner-plus from HD Moore -- https://github.com/hdm/scan-tools/blob/master/nse/banner-plus.nse
+ 9 - Banner Grab using banner-plus from HD Moore -- https://github.com/hdm/scan-tools/blob/master/nse/banner-plus.nse
      -----------------
-10 - NTP Monlist - Pull down NTP server information -- https://nmap.org/nsedoc/scripts/ntp-monlist.html
+ 10 - NTP Monlist - Pull down NTP server information -- https://nmap.org/nsedoc/scripts/ntp-monlist.html
      -----------------
-11 - NTP INFO - Pull down general NTP information -- https://nmap.org/nsedoc/scripts/ntp-info.html
+ 11 - NTP INFO - Pull down general NTP information -- https://nmap.org/nsedoc/scripts/ntp-info.html
      -----------------
-12 - DNS Brute - Enumerate DNS hostnames by brute force guessing of common subdomains -- https://nmap.org/nsedoc/scripts/dns-brute.html
+ 12 - DNS Brute - Enumerate DNS hostnames by brute force guessing of common subdomains -- https://nmap.org/nsedoc/scripts/dns-brute.html
      -----------------
-13 - SMB - Various scripts for SMB servers. Make sure you are running nmap 7.50+ as there are a lot of fixes in 7.50.
+ 13 - SMB - Various scripts for SMB servers. Make sure you are running nmap 7.50+ as there are a lot of fixes in 7.50.
      -----------------
-14 - SNMP - Is SNMP running on a Windows machine -- https://nmap.org/nsedoc/scripts/snmp-processes.html
+ 14 - SNMP - Is SNMP running on a Windows machine -- https://nmap.org/nsedoc/scripts/snmp-processes.html
             Grab HP printer password
      -----------------
-15 - Scan for MS17-010 Wannacry vulnerability -- https://nmap.org/nsedoc/scripts/smb-vuln-ms17-010.html
+ 15 - Scan for MS17-010 Wannacry vulnerability -- https://nmap.org/nsedoc/scripts/smb-vuln-ms17-010.html
      -----------------
-16 - MSSQL - Attempt to determine version, config info and check for blank password -- https://nmap.org/nsedoc/scripts/ms-sql-info.html
+ 16 - MSSQL - Attempt to determine version, config info and check for blank password -- https://nmap.org/nsedoc/scripts/ms-sql-info.html
      -----------------
-17 - Check for SSH V1 -- https://nmap.org/nsedoc/scripts/sshv1.html
+ 17 - Check for SSH V1 -- https://nmap.org/nsedoc/scripts/sshv1.html
 ''')
 #
 #print()
@@ -147,14 +153,32 @@ while len(nmapTest) > 2:
 	nmapTest = input('Enter a number to select a script not an IP address: ')
 	
 nmapTest = int(nmapTest)
+if nmapTest == -1:
+# -1 Help
+    print('''
+    nmap options
+    -iL -> Input from list of hosts/networks. Example  nmap -iL list-of-ips.txt
+    -oN -> Save default output to a file. Example nmap -oN outputfile.txt
+    -oX -> Save output in XML format. Example nmap -oX outputfile.xml
+    -oG -> Save results in a format for grep. Example nmap -oG outputfile.txt
+    -oA -> Save in all formats. Example nmap -oA outputfile
+     -d -> The debug flag. Levels are 0-9. -d is = to 0, -d9 is highest and shouldn't be used normally.
+     -v -> Add verbosity to the output
+    -vv -> Add more verbosity to the output
+    --script-trace -> All incoming and outgoing communication performed by the script is printed.
+    --script-updatedb -> Update the script database. Only needed when new scripts are added
+    --script-help=<script name> -> shows a description of what the script does. Example - nmap --script-help smb-vuln-cve-2017-7494
+    ''')
+#
 if nmapTest == 0:
 # 0 Download Cisco Configs
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     SNMP=input('Enter SNMP Private Community String: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s  nmap -sU -p 161 --script snmp-ios-config --script-args creds.snmp=%s %s' %(sudo,SNMP,IPAddress))
+    print()
+    print('%s  nmap -d -sU -p 161 -sC %s <--> Run default scripts against UDP 161' %(sudo,IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
@@ -164,7 +188,11 @@ elif nmapTest == 1:
 #    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389',IPAddress)
+    print('nmap -vv --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389',IPAddress)
+    print()
+    print('nmap --script ssl-cert-intaddr -p 443,465,993,995,3389',IPAddress)
+    print()
+    print('nmap --script ssl-known-key -p 443,465,993,995,3389',IPAddress)
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
