@@ -17,9 +17,6 @@ Add stun-info
 Add stun-version
 Add ssh2-enum-algos
 Add sslv2
-Add ssl-known-key
-Add ssl-cert
-add SMB scripts
 Example smb arguments
 nmap --script=smb-<script>.nse --script-args=smbuser=ron,smbpass=iagotest2k3,smbbasic=1,smbsign=force <host>
 
