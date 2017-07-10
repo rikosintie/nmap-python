@@ -1,4 +1,8 @@
 nmap3.python changelog
+------------------------------------------------------------------------------------
+2017-07-09 (YYYY-MM-DD) - CHANGED
+Added option -1 as a simple help file for some nmap options
+changed `Enter the IP Address:` to `Enter the IP Address or domain name:` on the prompt.
 
 ------------------------------------------------------------------------------------
 2017-07-08 (YYYY-MM-DD) - CHANGED
