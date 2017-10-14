@@ -15,7 +15,6 @@ Add tsc-brute
 Add tso-enum
 Add stun-info
 Add stun-version
-Add ssh2-enum-algos
 Add sslv2
 Example smb arguments
 nmap --script=smb-<script>.nse --script-args=smbuser=ron,smbpass=iagotest2k3,smbbasic=1,smbsign=force <host>
@@ -89,18 +88,20 @@ print('''
  0 - Download Cisco Configs using SNMP -- https://nmap.org/nsedoc/scripts/snmp-ios-config.html 
      -----------------
  1 - Check Cipher Suites and Certificates using ports 443, 465, 993, 995 and 3389
-    https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html
-    https://nmap.org/nsedoc/scripts/ssl-cert.html
-    https://nmap.org/nsedoc/scripts/ssl-cert-intaddr.html
-    https://nmap.org/nsedoc/scripts/ssl-known-key.html
+     https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html
+     https://nmap.org/nsedoc/scripts/ssl-cert.html
+     https://nmap.org/nsedoc/scripts/ssl-cert-intaddr.html
+     https://nmap.org/nsedoc/scripts/ssl-known-key.html
      -----------------
  2 - Display SSH fingerprint (Host Keys) on an SSh server -- https://nmap.org/nsedoc/scripts/ssh-hostkey.html
+     Dispaly the number of algorithms that the target SSH2 server offers. -- https://nmap.org/nsedoc/scripts/ssh2-enum-algos.html
+     Check for SSH V1
      -----------------
  3 - Performs routing information gathering through Cisco's (EIGRP) Protocol -- https://nmap.org/nsedoc/scripts/broadcast-eigrp-discovery.html
      -----------------
  4 - Display DHCP with the NMAP DHCP-Discover scripts -- https://nmap.org/nsedoc/scripts/dhcp-discover.html 
-    https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html
-    Display IPv6 DHCP with a broadcast discover -- https://nmap.org/nsedoc/scripts/broadcast-dhcp6-discover.html
+     https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html
+     Display IPv6 DHCP with a broadcast discover -- https://nmap.org/nsedoc/scripts/broadcast-dhcp6-discover.html
      -----------------
  5 - Nmap script to find vulnerable Samba devices such as a printer, NAS or any device that allows Windows clients to connect.
      -----------------
@@ -121,13 +122,12 @@ print('''
  13 - SMB - Various scripts for SMB servers. Make sure you are running nmap 7.50+ as there are a lot of fixes in 7.50.
      -----------------
  14 - SNMP - Is SNMP running on a Windows machine -- https://nmap.org/nsedoc/scripts/snmp-processes.html
-            Grab HP printer password
+      Grab HP printer password using SNMP
      -----------------
  15 - Scan for MS17-010 Wannacry vulnerability -- https://nmap.org/nsedoc/scripts/smb-vuln-ms17-010.html
      -----------------
  16 - MSSQL - Attempt to determine version, config info and check for blank password -- https://nmap.org/nsedoc/scripts/ms-sql-info.html
      -----------------
- 17 - Check for SSH V1 -- https://nmap.org/nsedoc/scripts/sshv1.html
 ''')
 #
 #print()
@@ -200,6 +200,10 @@ elif nmapTest == 2:
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('nmap --script ssh-hostkey',IPAddress)
+    print()
+    print('nmap --script ssh2-enum-algos',IPAddress)
+    print()
+    print('nmap --script sshv1',IPAddress) 
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
@@ -371,7 +375,7 @@ elif nmapTest == 13:
     print('nmap -p445 --script=smb-security-mode.nse %s' %(IPAddress))
     print('%s nmap -p U:137,T:139 -sU -sS --script=smb-security-mode.nse %s' %(sudo, IPAddress))
     print('nmap -p445 --script=smbv2-enabled.nse',IPAddress)    
-    print('%s nmap-p U:137,T:139 -sU -sS --script=smbv2-enabled.nse %s' %(sudo, IPAddress))
+    print('%s nmap -p U:137,T:139 -sU -sS --script=smbv2-enabled.nse %s' %(sudo, IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
@@ -384,6 +388,7 @@ elif nmapTest == 14:
     print('%s nmap -sU -p 161 --script=snmp-processes %s' %(sudo, IPAddress))
     print('Grab HP Printer Password')
     print('snmpget -v 1 -c public %s .1.3.6.1.4.1.11.2.3.9.1.1.13.0 ' %(IPAddress))
+    print('snmpget -v 1 -c public %s .iso.3.6.1.4.1.11.2.3.9.4.2.1.3.9.1.1.0 ' %(IPAddress))
     print('snmpget -v 1 -c internal %s .1.3.6.1.4.1.11.2.3.9.1.1.13.0 ' %(IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
