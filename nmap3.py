@@ -8,7 +8,6 @@ If it shows other than 3.4 or higher use "python3 nmap3.py"
 TO DO
 Add vnc-brute
 Add vnc-info
-Add tftp-enum
 Add tn3270-hidden
 Add tn3270-screen
 Add tsc-brute
@@ -24,6 +23,10 @@ you should run nmap --script-updatedb if you add any of the non-default scripts 
 you can use --script-help to any script to print out its help file I.E. nmap --script-help smb-vuln-cve-2017-7494
 you can use --script-trace to output the packets sent and received 
 I.E nmap --script ssl-cert,ssl-enum-ciphers --script-trace -p 443,465,993,995 192.168.10.239
+nmap cheat sheets
+ - https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/
+ - https://highon.coffee/blog/nmap-cheat-sheet/
+
  
 Script Usage
 If you create a file "ip.txt" in the folder where you run the script it will load the IP address as a default and use
@@ -84,7 +87,7 @@ def readip():
 
 print('''
 -1 - Print out script options -- https://nmap.org/book/nse-usage.html, https://nmap.org/book/output-formats-commandline-flags.html
-
+     -----------------
  0 - Download Cisco Configs using SNMP -- https://nmap.org/nsedoc/scripts/snmp-ios-config.html 
      -----------------
  1 - Check Cipher Suites and Certificates using ports 443, 465, 993, 995 and 3389
@@ -94,8 +97,8 @@ print('''
      https://nmap.org/nsedoc/scripts/ssl-known-key.html
      -----------------
  2 - Display SSH fingerprint (Host Keys) on an SSh server -- https://nmap.org/nsedoc/scripts/ssh-hostkey.html
-     Dispaly the number of algorithms that the target SSH2 server offers. -- https://nmap.org/nsedoc/scripts/ssh2-enum-algos.html
-     Check for SSH V1
+     Display the number of algorithms that the target SSH2 server offers. -- https://nmap.org/nsedoc/scripts/ssh2-enum-algos.html
+     Checks if an SSH server supports the obsolete and less secure SSH Protocol V1. - https://nmap.org/nsedoc/scripts/sshv1.html
      -----------------
  3 - Performs routing information gathering through Cisco's (EIGRP) Protocol -- https://nmap.org/nsedoc/scripts/broadcast-eigrp-discovery.html
      -----------------
@@ -114,8 +117,9 @@ print('''
  9 - Banner Grab using banner-plus from HD Moore -- https://github.com/hdm/scan-tools/blob/master/nse/banner-plus.nse
      -----------------
  10 - NTP Monlist - Pull down NTP server information -- https://nmap.org/nsedoc/scripts/ntp-monlist.html
+      NTP INFO - Pull down general NTP information -- https://nmap.org/nsedoc/scripts/ntp-info.html 
      -----------------
- 11 - NTP INFO - Pull down general NTP information -- https://nmap.org/nsedoc/scripts/ntp-info.html
+ 11 - Retrieves the external IP address of a NAT:ed host using the STUN protocol. -- https://nmap.org/nsedoc/scripts/stun-info.html
      -----------------
  12 - DNS Brute - Enumerate DNS hostnames by brute force guessing of common subdomains -- https://nmap.org/nsedoc/scripts/dns-brute.html
      -----------------
@@ -127,6 +131,8 @@ print('''
  15 - Scan for MS17-010 Wannacry vulnerability -- https://nmap.org/nsedoc/scripts/smb-vuln-ms17-010.html
      -----------------
  16 - MSSQL - Attempt to determine version, config info and check for blank password -- https://nmap.org/nsedoc/scripts/ms-sql-info.html
+     -----------------
+ 17 - Run all scripts in the default category. This is useful if you have found a target and just want to see what all is running.
      -----------------
 ''')
 #
@@ -213,14 +219,12 @@ elif nmapTest == 3:
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s nmap --script=broadcast-eigrp-discovery %s' %(sudo, IPAddress))
-#    print('%s nmap --script=broadcast-eigrp-discovery %s' %(sudo, IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
 elif nmapTest == 4:
 #4 Troubleshooting DHCP with the NMAP DHCP-Discover script
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s nmap -sU -p67 --script broadcast-dhcp-discover' %(sudo))
@@ -231,7 +235,6 @@ elif nmapTest == 4:
 elif nmapTest == 5:
 #5 Troubleshooting IPv6 DHCP discover
     IPAddress = readip()
-#    IPAddress=input('Enter the v6 IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('Download script from https://svn.nmap.org/nmap/scripts/smb-vuln-cve-2017-7494.nse')
@@ -243,7 +246,6 @@ elif nmapTest == 5:
 elif nmapTest == 6:
 #6 Brute Forcing Telnet with NMAP
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('nmap -p 23 --script telnet-brute --script-args userdb=users.txt,passdb=pw4.txt',IPAddress)
@@ -317,7 +319,6 @@ elif nmapTest == 8:
 elif nmapTest == 9:
 #9 Banner Grab
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('nmap -sV --script=banner-plus.nse',IPAddress)
@@ -326,21 +327,21 @@ elif nmapTest == 9:
 #
 elif nmapTest == 10:
 #10 NTP Monlist
+#   NTP INFO
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s nmap -sU -p 123 -n --script=ntp-monlist %s' %(sudo, IPAddress))
+    print('%s nmap -sU -p 123 --script ntp-info %s' %(sudo, IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
 elif nmapTest == 11:
-#11 NTP INFO
+#11 STUN INFO
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('%s nmap -sU -p 123 --script ntp-info %s' %(sudo, IPAddress))
+    print('%s nmap -sV -PN -sU -p 3478 --script stun-info %s' %(sudo, IPAddress))
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
@@ -359,7 +360,6 @@ elif nmapTest == 12:
 elif nmapTest == 13:
 #13 SMB
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('nmap -p445 --script=smb-os-discovery.nse',IPAddress)
@@ -382,7 +382,6 @@ elif nmapTest == 13:
 elif nmapTest == 14:
 #14 SNMP on Windows
     IPAddress = readip()
-#   IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s nmap -sU -p 161 --script=snmp-processes %s' %(sudo, IPAddress))
@@ -396,7 +395,6 @@ elif nmapTest == 14:
 elif nmapTest == 15:
 #15 Basic Script Scan
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('%s nmap -Pn -p445 --open --max-hostgroup 3 --script smb-vuln-ms17-010 %s' %(sudo, IPAddress))
@@ -409,7 +407,6 @@ elif nmapTest == 15:
 elif nmapTest == 16:
 #16 SQL
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
     print('nmap -sn --script ms-sql-empty-password --script-args mssql.instance-all',IPAddress)
@@ -421,9 +418,8 @@ elif nmapTest == 16:
 elif nmapTest == 17:
 #17 SSH V1
     IPAddress = readip()
-#    IPAddress=input('Enter the IP Address: ')
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('nmap -script sshv1',IPAddress) 
+    print('nmap -SV -sC',IPAddress) 
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
