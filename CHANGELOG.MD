@@ -14,4 +14,13 @@ Added port 3389 to script 1 SSL ciphers. This checks the ciphers offered by the 
 I documented the steps needed to enable TLS1.1/1.2 in this blog post [Enabling TLS 1.1/1.2 for RDP in Microsoft Server 2008R2/Windows 7 SP1](https://mwhubbard.blogspot.com/2017/07/enabling-tls-1112-for-rdp-in-microsoft.html)
 
 ------------------------------------------------------------------------------------
+2018-01-20 (YYYY-MM-DD) - CHANGED
+Added the OS library
+Used 
+osname = os.name
+if osname == "posix":
+    sudo = 'sudo'
+else:
+	sudo = ''
+to automatically determine the OS and eliminate tne need to ask.
 
