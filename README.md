@@ -11,7 +11,7 @@ On Linux
 ```
 python3 nmap3.py
 ```
-When the script starts you will be prompted to enter y if you are on Linux. If you answer y it will add sudo to the commands that need root.
+The script check to see if you are on a POSIX OS add sudo to the commands that need root if you are.
 
 To save a default IP address or range, create a file called ip.txt in the same folder as the script. In the file add just the IP Address or IP Address range in Nmap format. When you run the script it will list the IP address in the prompt. Just hit enter to accept the default or type a new IP address and hit enter.
 
