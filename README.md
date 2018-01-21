@@ -112,7 +112,6 @@ The script will output the appropriate nmap command. Copy it and paste into a co
 Here is an example using choice 0. In this case the ip.txt file conatins 10.56.245.133 but I overrode 
 it with 192.168.10.0/24.
 ```
-Are you running Linux [y/n] y
 Input a number to select a script 0
 Enter the IP Address [10.56.246.133]: 192.168.10.0/24
 Enter SNMP Private Community String private
