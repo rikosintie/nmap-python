@@ -26,17 +26,30 @@ I.E nmap --script ssl-cert,ssl-enum-ciphers --script-trace -p 443,465,993,995 19
 nmap cheat sheets
  - https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/
  - https://highon.coffee/blog/nmap-cheat-sheet/
+ - https://scadahacker.com/library/Documents/Cheat_Sheets/Hacking%20-%20NMap%20Quick%20Reference%20Guide.pdf
 
  
 Script Usage
 If you create a file "ip.txt" in the folder where you run the script it will load the IP address as a default and use
 it where an ip address is needed. The file should have one line - the ip address or ip address range to use.
-select Linux or Windows by entering y for Linux, n for windows.
-select a number from the list of nmap scripts, you will be asked for an IP address or SNMP string if the script requires it.
-The script will output the appropriate nmap command. Copy it and paste into a command line or shell
+
+The script will prompt "Are you running Linux" on start up. Enter y for Linux, n for windows. 
+On Linux, sudo will be added on scans that require root privliges.
+
+Enter a number from the list of nmap scripts, you will be asked for an IP address or SNMP string if the script requires it.
+
+If an IP address is required you will be prompted to enter one. You can enter an IP address/range or iL and a filename. The file should 
+contain a list of hostnames or IP addresses to be scanned, one per line.
+
+For Example, Enter the IP Address or domain name [192.168.10.239]: iL hosts.txt
+nmap -vv --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995,3389 iL hosts.txt
+
+The script will output the appropriate nmap command. Copy it and paste into a command line or shell.
+
 """
 
 import sys; 
+import os
 import re
 ver =  sys.version
 pattern = re.compile('\A\d{1}.{1}\d{1}.{1}\d{1}.{1}')
@@ -132,18 +145,15 @@ print('''
      -----------------
  16 - MSSQL - Attempt to determine version, config info and check for blank password -- https://nmap.org/nsedoc/scripts/ms-sql-info.html
      -----------------
- 17 - Run all scripts in the default category. This is useful if you have found a target and just want to see what all is running.
+ 17 - Run a fast ping scan on a large IP range. No service detection or port scanning is done.
      -----------------
 ''')
 #
 #print()
 #
-#select the OS. Linux needs sudo appeneded for UDP scans.
-OS = ''
-while OS != 'Y' and OS != 'N':
-    OS = input('Are you running Linux [y/n] ')
-    OS = OS.upper()
-if OS == 'Y':
+#select the OS. Posix needs sudo appeneded for some scans.
+osname = os.name
+if osname == "posix":
     sudo = 'sudo'
 else:
 	sudo = ''
@@ -416,10 +426,10 @@ elif nmapTest == 16:
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
 #
 elif nmapTest == 17:
-#17 SSH V1
+#17 Rapid Scan of large address space
     IPAddress = readip()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
     print()
-    print('nmap -SV -sC',IPAddress) 
+    print('nmap -n -sP --min-rate 1000 --max-retries 0 --max-rtt-timeout 100ms --max-scan-delay 0 ',IPAddress) 
     print()
     print('<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>')
