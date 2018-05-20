@@ -3,6 +3,12 @@ A Python wrapper for my most used nmap scripts. It's not a substitute for nmap k
 
 Written in Python 3.4.4, it prints the Python version as the first line. 
 
+Here is an asciinema screen recording of how to use the script:
+[python3 nmap3.py](https://asciinema.org/a/yIGbJFgc6F7vosb6odXtKnLQb)
+
+asciinema is a cool little python script for recording terminal output. It can be found on github at:
+[asciinema](https://github.com/asciinema/asciinema)
+
 To execute on windows if the [python launcher](https://www.python.org/dev/peps/pep-0397/) is installed 
 ```
 python -3 nmap3.py 
