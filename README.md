@@ -1,3 +1,5 @@
+![GitHub language count](https://img.shields.io/github/languages/count/rikosintie/nmap-python)
+![Twitter Follow](https://img.shields.io/twitter/follow/rikosintie?style=social)
 # nmap-python
 A Python wrapper for my most used nmap scripts. It's not a substitute for nmap knowledge but it makes running common scripts fast and easy as you don't have to remember script names. It's easy to edit the code in the case select statements and change the scipts if you want to use different nmap scripts.
 
