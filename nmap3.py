@@ -69,7 +69,6 @@ import os
 import re
 
 ver = sys.version
-print(f'Version: {ver}')
 pattern = re.compile('\A\d{1}.{1,3}\d{1}.{1}\d{1}.{1}')
 ver = re.findall(pattern, ver)
 
@@ -170,6 +169,8 @@ print('''
  16 - MSSQL - Attempt to determine version, config info and check for blank password -- https://nmap.org/nsedoc/scripts/ms-sql-info.html
      -----------------
  17 - Run a fast ping scan on a large IP range. No service detection or port scanning is done.
+     -----------------
+18 - Scan http for default credentials -- https://github.com/nnposter/nndefaccts
      -----------------
 ''')
 
@@ -456,5 +457,14 @@ elif nmapTest == 17:
     print('--'*45)
     print()
     print(f'{sudo} nmap -n -sP --min-rate 1000 --max-retries 0 --max-rtt-timeout 100ms --max-scan-delay 0 {IPAddress}')
+    print()
+    print('--'*45)
+#
+elif nmapTest == 18:
+    # 18 Default Credentials scan
+    IPAddress = readip()
+    print('--'*45)
+    print()
+    print(f'{sudo} nmap --script http-default-accounts --script-args http-default-accounts.fingerprintfile=~/http-default-accounts-fingerprints-nndefaccts.lua -p 80  {IPAddress}')
     print()
     print('--'*45)
